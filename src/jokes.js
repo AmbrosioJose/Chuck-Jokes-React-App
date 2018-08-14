@@ -42,7 +42,7 @@ class Jokes extends Component {
       <Jumbotron className="tweets">
         <h2>Jokes Component</h2>
         <ListGroup>
-          {this.state.categories.map(function(listValue){
+          {this.state.categories.map((listValue)=>{
             return <Joke value={listValue}/>;
           })}
           
