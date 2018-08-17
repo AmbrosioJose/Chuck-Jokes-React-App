@@ -1,51 +1,31 @@
 import React, { Component } from 'react';
 import {Jumbotron,ListGroup} from 'react-bootstrap';
-import axios from 'axios'
+//import axios from 'axios'
 import Joke from './joke.js'
 class Jokes extends Component {
   constructor(props){
     super(props);
     this.state ={
-      categories:[],
+      category:'',
     };
-  }
-  componentWillMount() {
-    console.log('will mount')
-    let viewModel= this
-    axios.get('https://api.chucknorris.io/jokes/categories', {
-            headers: {
-                Accept: 'application/json'
-            }
-        })
-        .then(function(response){
-            
-            // for(let category of response.data){
-            //     // viewModel.options.push({ text: category, value: category })
-            //     console.log(category)
-
-            // }
-            viewModel.setState({
-              categories: response.data
-            })
-            console.log(viewModel.categories)
-        })
-        .catch(function(err){
-            alert(err)
-        })
-  }
-  componentDidMount() {
-    console.log('Component DID MOUNT!')
   }
 
   render() {
     return (
       <Jumbotron className="tweets">
-        <h2>Jokes Component</h2>
+        <h2>Facts of Life</h2>
         <ListGroup>
-          {this.state.categories.map((listValue)=>{
-            return <Joke value={listValue}/>;
+
+          {this.props.value.length>0 ?(
+            <Joke value={this.props.value}/>
+          ):('')}
+
+          {this.props.previousFacts.length>0 ?(
+            <p>Previous Jokes:</p>
+          ):('')}
+          {this.props.previousFacts.map((listValue,index)=>{
+            return <Joke value={listValue} key ={index}/>;
           })}
-          
         </ListGroup>
 
 
